@@ -1,0 +1,4 @@
+*.py
+!bookmyshow_bot_linux.py
+!bookmyshow_bot_windows.py
+
