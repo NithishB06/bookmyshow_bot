@@ -323,16 +323,18 @@ def web_scrape(theatre_list):
                         if movie_counter_machine:
                             for index in range(len(movie_released_list)):
                                 if value in movie_released_list[index]:
-                                    for a in movie_counter_machine.values():
+                                    for a in movie_released_list[index].values():
                                         for b in a:
-                                            if b not in movie_released_list[index][value].keys():
+                                            if b not in movie_counter_machine[value].keys():
+                                                logger.info("New theatre added - Filling the dataframes")
                                                 cinema_update = {}
                                                 cinema_update['Movie'] = value
                                                 cinema_update['Theatre'] = b
                                                 cinema_update['Show Timings'] = ", ".join(movie_released_list[index][value][b])
                                                 cinema_update_list.append(cinema_update)
-                                            elif b in movie_released_list[index][value].keys():
+                                            elif b in movie_counter_machine[value].keys():
                                                 if movie_counter_machine[value][b] != movie_released_list[index][value][b]:
+                                                    logger.info("New show for an existing theatre added - Filling the dataframes")
                                                     show_update = {}
                                                     show_update['Movie'] = value
                                                     show_update['Theatre'] = b
@@ -343,6 +345,7 @@ def web_scrape(theatre_list):
                             for index in range(len(movie_released_list)):
                                 if value in movie_released_list[index]:
                                     for key in movie_released_list[index][value].keys():
+                                        logger.info("New theatre(s) added - Filling the dataframes")
                                         cinema_update = {}
                                         cinema_update['Movie'] = value
                                         cinema_update['Theatre'] = key
