@@ -101,13 +101,13 @@ def web_scrape():
         if 'SessionNotCreatedException' in exception_dict.keys():
             if exception_dict['SessionNotCreatedException'] != time_now:
                 logger.error("Alerting script master via e-mail about the exception")
-                send_exception_mail(email_one,err,'SessionNotCreatedException',79)
+                send_exception_mail(email_one,err,'SessionNotCreatedException',81)
                 exception_dict['SessionNotCreatedException'] = time_now
             else:
                 logger.error("Already sent the mail this hour, skipping now")
         else:
             logger.error("Alerting script master via e-mail about the exception")
-            send_exception_mail(email_one,err,'SessionNotCreatedException',79)
+            send_exception_mail(email_one,err,'SessionNotCreatedException',81)
             exception_dict['SessionNotCreatedException'] = time_now
 
     except Exception as err:
@@ -133,13 +133,13 @@ def web_scrape():
         if type(err).__name__ in exception_dict.keys():
             if exception_dict[type(err).__name__] != time_now:
                 logger.error("Alerting script master via e-mail about the exception")
-                send_exception_mail(email_one,err,type(err).__name__,109)
+                send_exception_mail(email_one,err,type(err).__name__,113)
                 exception_dict[type(err).__name__] = time_now
             else:
                 logger.error("Already sent the mail this hour, skipping now")
         else:
             logger.error("Alerting script master via e-mail about the exception")
-            send_exception_mail(email_one,err,type(err).__name__,109)
+            send_exception_mail(email_one,err,type(err).__name__,113)
             exception_dict[type(err).__name__] = time_now
 
     try:
@@ -155,13 +155,13 @@ def web_scrape():
         if type(err).__name__ in exception_dict.keys():
             if exception_dict[type(err).__name__] != time_now:
                 logger.error("Alerting script master via e-mail about the exception")
-                send_exception_mail(email_one,err,type(err).__name__,147)
+                send_exception_mail(email_one,err,type(err).__name__,153)
                 exception_dict[type(err).__name__] = time_now
             else:
                 logger.error("Already sent the mail this hour, skipping now")
         else:
             logger.error("Alerting script master via e-mail about the exception")
-            send_exception_mail(email_one,err,type(err).__name__,147)
+            send_exception_mail(email_one,err,type(err).__name__,153)
             exception_dict[type(err).__name__] = time_now
     
     df_all_showing_info = pd.DataFrame(columns = ['Movie Name','Status'])
@@ -180,6 +180,17 @@ def web_scrape():
             logger.error("There are less than 5 movies currently running")
         except Exception as err:
             logger.error(err)
+            if type(err).__name__ in exception_dict.keys():
+                if exception_dict[type(err).__name__] != time_now:
+                    logger.error("Alerting script master via e-mail about the exception")
+                    send_exception_mail(email_one,err,type(err).__name__,181)
+                    exception_dict[type(err).__name__] = time_now
+                else:
+                    logger.error("Already sent the mail this hour, skipping now")
+            else:
+                logger.error("Alerting script master via e-mail about the exception")
+                send_exception_mail(email_one,err,type(err).__name__,181)
+                exception_dict[type(err).__name__] = time_now
 
         logger.info(f"Got list of Top-5 Movies currently open for bookings : {', '.join(now_showing_top)}")
 
@@ -217,6 +228,17 @@ def web_scrape():
             
         except Exception as err:
             logger.error(err)
+            if type(err).__name__ in exception_dict.keys():
+                if exception_dict[type(err).__name__] != time_now:
+                    logger.error("Alerting script master via e-mail about the exception")
+                    send_exception_mail(email_one,err,type(err).__name__,229)
+                    exception_dict[type(err).__name__] = time_now
+                else:
+                    logger.error("Already sent the mail this hour, skipping now")
+            else:
+                logger.error("Alerting script master via e-mail about the exception")
+                send_exception_mail(email_one,err,type(err).__name__,229)
+                exception_dict[type(err).__name__] = time_now
 
         logger.info(f"Got list of all movies open for bookings: {', '.join(all_showing)}")
 
@@ -281,11 +303,33 @@ def web_scrape():
                     logger.info("Movies in your wish-lists are not open for bookings yet")
                 except Exception as err:
                     logger.error(err)
+                    if type(err).__name__ in exception_dict.keys():
+                        if exception_dict[type(err).__name__] != time_now:
+                            logger.error("Alerting script master via e-mail about the exception")
+                            send_exception_mail(email_one,err,type(err).__name__,304)
+                            exception_dict[type(err).__name__] = time_now
+                        else:
+                            logger.error("Already sent the mail this hour, skipping now")
+                    else:
+                        logger.error("Alerting script master via e-mail about the exception")
+                        send_exception_mail(email_one,err,type(err).__name__,304)
+                        exception_dict[type(err).__name__] = time_now
 
                 try:
                     df_all_showing_info = pd.merge(df_all_showing_info,df_all_showing_data,how = 'outer')
                 except Exception as err:
                     logger.error(err)
+                    if type(err).__name__ in exception_dict.keys():
+                        if exception_dict[type(err).__name__] != time_now:
+                            logger.error("Alerting script master via e-mail about the exception")
+                            send_exception_mail(email_one,err,type(err).__name__,320)
+                            exception_dict[type(err).__name__] = time_now
+                        else:
+                            logger.error("Already sent the mail this hour, skipping now")
+                    else:
+                        logger.error("Alerting script master via e-mail about the exception")
+                        send_exception_mail(email_one,err,type(err).__name__,320)
+                        exception_dict[type(err).__name__] = time_now
 
                 if not df_alert_info.empty:
                     global flag
@@ -324,6 +368,17 @@ def web_scrape():
                                     continue
                                 except Exception as err:
                                     logger.err(err)
+                                    if type(err).__name__ in exception_dict.keys():
+                                        if exception_dict[type(err).__name__] != time_now:
+                                            logger.error("Alerting script master via e-mail about the exception")
+                                            send_exception_mail(email_one,err,type(err).__name__,369)
+                                            exception_dict[type(err).__name__] = time_now
+                                        else:
+                                            logger.error("Already sent the mail this hour, skipping now")
+                                    else:
+                                        logger.error("Alerting script master via e-mail about the exception")
+                                        send_exception_mail(email_one,err,type(err).__name__,369)
+                                        exception_dict[type(err).__name__] = time_now
 
                                 if value not in movie_release_date:
                                     temp_list = []
@@ -370,6 +425,17 @@ def web_scrape():
                                                                 break
                                                             except Exception as err:
                                                                 logger.error(err)
+                                                                if type(err).__name__ in exception_dict.keys():
+                                                                    if exception_dict[type(err).__name__] != time_now:
+                                                                        logger.error("Alerting script master via e-mail about the exception")
+                                                                        send_exception_mail(email_one,err,type(err).__name__,426)
+                                                                        exception_dict[type(err).__name__] = time_now
+                                                                    else:
+                                                                        logger.error("Already sent the mail this hour, skipping now")
+                                                                else:
+                                                                    logger.error("Alerting script master via e-mail about the exception")
+                                                                    send_exception_mail(email_one,err,type(err).__name__,426)
+                                                                    exception_dict[type(err).__name__] = time_now
                                                                 break                                                       
                                                         cinema_dict[titles[i]] = show_list
                                                         cinema_update_list = []
@@ -385,7 +451,10 @@ def web_scrape():
                                                                 movie_counter_machine[value] = cinema_dict.copy()
                                                             elif titles[i] in movie_counter_machine[value].keys():
                                                                 if movie_counter_machine[value][titles[i]] != cinema_dict[titles[i]]:
-                                                                    logger.info(f"New show added in {titles[i]}")
+                                                                    if len(list(set(show_list)-set(movie_counter_machine[value][titles[i]]))) == 1:
+                                                                        logger.info(f"New show added in {titles[i]}")
+                                                                    else:
+                                                                        logger.info(f"{len(list(set(show_list)-set(movie_counter_machine[value][titles[i]])))} new shows added in {titles[i]}")
                                                                     show_update = {}
                                                                     show_update['Movie'] = value
                                                                     show_update['Theatre'] = titles[i]
@@ -412,6 +481,17 @@ def web_scrape():
                                                             pass
                                                         except Exception as err:
                                                             logger.error(err)
+                                                            if type(err).__name__ in exception_dict.keys():
+                                                                if exception_dict[type(err).__name__] != time_now:
+                                                                    logger.error("Alerting script master via e-mail about the exception")
+                                                                    send_exception_mail(email_one,err,type(err).__name__,479)
+                                                                    exception_dict[type(err).__name__] = time_now
+                                                                else:
+                                                                    logger.error("Already sent the mail this hour, skipping now")
+                                                            else:
+                                                                logger.error("Alerting script master via e-mail about the exception")
+                                                                send_exception_mail(email_one,err,type(err).__name__,479)
+                                                                exception_dict[type(err).__name__] = time_now
                                 
                                                         try:
                                                             df_show_update_info = pd.merge(df_show_update_info,df_show_update_data,how = 'outer')
@@ -419,6 +499,17 @@ def web_scrape():
                                                             logger.info(f"No new shows added for {value} in {titles[i]}")
                                                         except Exception as err:
                                                             logger.error(err)
+                                                            if type(err).__name__ in exception_dict.keys():
+                                                                if exception_dict[type(err).__name__] != time_now:
+                                                                    logger.error("Alerting script master via e-mail about the exception")
+                                                                    send_exception_mail(email_one,err,type(err).__name__,497)
+                                                                    exception_dict[type(err).__name__] = time_now
+                                                                else:
+                                                                    logger.error("Already sent the mail this hour, skipping now")
+                                                            else:
+                                                                logger.error("Alerting script master via e-mail about the exception")
+                                                                send_exception_mail(email_one,err,type(err).__name__,497)
+                                                                exception_dict[type(err).__name__] = time_now
 
                                                         if not df_cinema_update_info.empty:
                                                             logger.info(f"Sending an e-mail alert - {titles[i]} opened for {value}")
@@ -433,6 +524,17 @@ def web_scrape():
                                         logger.info(f"Either {value} is not running in {titles[i]} (or) {titles[i]} is unreachable right now")
                                     except Exception as err:
                                         logger.error(err)
+                                        if type(err).__name__ in exception_dict.keys():
+                                            if exception_dict[type(err).__name__] != time_now:
+                                                logger.error("Alerting script master via e-mail about the exception")
+                                                send_exception_mail(email_one,err,type(err).__name__,522)
+                                                exception_dict[type(err).__name__] = time_now
+                                            else:
+                                                logger.error("Already sent the mail this hour, skipping now")
+                                        else:
+                                            logger.error("Alerting script master via e-mail about the exception")
+                                            send_exception_mail(email_one,err,type(err).__name__,522)
+                                            exception_dict[type(err).__name__] = time_now
 
                                 flag_check = 0
                                 logger.info("Updating the main global list with all the latest theatre and show updates, to match for any updates next time")
@@ -501,13 +603,13 @@ def web_scrape():
             if type(err).__name__ in exception_dict.keys():
                 if exception_dict[type(err).__name__] != time_now:
                     logger.error("Alerting script master via e-mail about the exception")
-                    send_exception_mail(email_one,err,type(err).__name__,491)
+                    send_exception_mail(email_one,err,type(err).__name__,598)
                     exception_dict[type(err).__name__] = time_now
                 else:
                     logger.error("Already sent the mail this hour, skipping now")
             else:
                 logger.error("Alerting script master via e-mail about the exception")
-                send_exception_mail(email_one,err,type(err).__name__,491)
+                send_exception_mail(email_one,err,type(err).__name__,598)
                 exception_dict[type(err).__name__] = time_now
     else:
         logger.info("Force Mode - ON : Going Quick-Mode")
@@ -562,6 +664,17 @@ def web_scrape():
                                             break
                                         except Exception as err:
                                             logger.error(err)
+                                            if type(err).__name__ in exception_dict.keys():
+                                                if exception_dict[type(err).__name__] != time_now:
+                                                    logger.error("Alerting script master via e-mail about the exception")
+                                                    send_exception_mail(email_one,err,type(err).__name__,662)
+                                                    exception_dict[type(err).__name__] = time_now
+                                                else:
+                                                    logger.error("Already sent the mail this hour, skipping now")
+                                            else:
+                                                logger.error("Alerting script master via e-mail about the exception")
+                                                send_exception_mail(email_one,err,type(err).__name__,662)
+                                                exception_dict[type(err).__name__] = time_now
                                             break    
                                     cinema_update_list = []
                                     show_update_list = []
@@ -584,7 +697,7 @@ def web_scrape():
                                                 show_update['Movie'] = value
                                                 show_update['Theatre'] = titles[i]
                                                 show_update['New Show(s) Added'] = ', '.join(list(set(show_list)-set(movie_counter_machine[value][titles[i]])))
-                                                show_update['Show Timings'] = show_list
+                                                show_update['Show Timings'] = ', '.join(show_list)
                                                 show_update_list.append(show_update)
                                                 cinema_dict[titles[i]] = show_list
                                                 movie_counter_machine[value] = cinema_dict.copy()
@@ -610,6 +723,17 @@ def web_scrape():
                                         pass
                                     except Exception as err:
                                         logger.error(err)
+                                        if type(err).__name__ in exception_dict.keys():
+                                            if exception_dict[type(err).__name__] != time_now:
+                                                logger.error("Alerting script master via e-mail about the exception")
+                                                send_exception_mail(email_one,err,type(err).__name__,721)
+                                                exception_dict[type(err).__name__] = time_now
+                                            else:
+                                                logger.error("Already sent the mail this hour, skipping now")
+                                        else:
+                                            logger.error("Alerting script master via e-mail about the exception")
+                                            send_exception_mail(email_one,err,type(err).__name__,721)
+                                            exception_dict[type(err).__name__] = time_now
             
                                     try:
                                         df_show_update_info = pd.merge(df_show_update_info,df_show_update_data,how = 'outer')
@@ -617,6 +741,17 @@ def web_scrape():
                                         logger.info(f"No new shows added for {value} in {titles[i]}")
                                     except Exception as err:
                                         logger.error(err)
+                                        if type(err).__name__ in exception_dict.keys():
+                                            if exception_dict[type(err).__name__] != time_now:
+                                                logger.error("Alerting script master via e-mail about the exception")
+                                                send_exception_mail(email_one,err,type(err).__name__,739)
+                                                exception_dict[type(err).__name__] = time_now
+                                            else:
+                                                logger.error("Already sent the mail this hour, skipping now")
+                                        else:
+                                            logger.error("Alerting script master via e-mail about the exception")
+                                            send_exception_mail(email_one,err,type(err).__name__,739)
+                                            exception_dict[type(err).__name__] = time_now
 
                                     if not df_cinema_update_info.empty:
                                         logger.info(f"Sending an e-mail alert - {titles[i]} opened for {value}")
@@ -631,6 +766,17 @@ def web_scrape():
                     logger.info(f"Either {value} is not running in {titles[i]} (or) {titles[i]} is unreachable right now")
                 except Exception as err:
                     logger.error(err)
+                    if type(err).__name__ in exception_dict.keys():
+                        if exception_dict[type(err).__name__] != time_now:
+                            logger.error("Alerting script master via e-mail about the exception")
+                            send_exception_mail(email_one,err,type(err).__name__,764)
+                            exception_dict[type(err).__name__] = time_now
+                        else:
+                            logger.error("Already sent the mail this hour, skipping now")
+                    else:
+                        logger.error("Alerting script master via e-mail about the exception")
+                        send_exception_mail(email_one,err,type(err).__name__,764)
+                        exception_dict[type(err).__name__] = time_now
 
             flag_check = 0
             logger.info("Updating the main global list with all the latest theatre and show updates, to match for any updates next time")
@@ -657,13 +803,13 @@ def web_scrape():
             if type(err).__name__ in exception_dict.keys():
                 if exception_dict[type(err).__name__] != time_now:
                     logger.error("Alerting script master via e-mail about the exception")
-                    send_exception_mail(email_one,err,type(err).__name__,643)
+                    send_exception_mail(email_one,err,type(err).__name__,798)
                     exception_dict[type(err).__name__] = time_now
                 else:
                     logger.error("Already sent the mail this hour, skipping now")
             else:
                 logger.error("Alerting script master via e-mail about the exception")
-                send_exception_mail(email_one,err,type(err).__name__,643)
+                send_exception_mail(email_one,err,type(err).__name__,798)
                 exception_dict[type(err).__name__] = time_now
 
 def send_theatre_alert_mail(emails,mode,dataframe):
@@ -801,9 +947,8 @@ def main():
     logger.info("\n")
     logger.info("----------> SCRIPT STARTS HERE <----------")
 
-    sched.add_job(web_scrape, 'interval', args=[], minutes=1, next_run_time=datetime.now(), misfire_grace_time=None)
-
-    sched.start()
+    while True:
+        web_scrape()
 
 
 if __name__ == '__main__':
@@ -814,10 +959,6 @@ if __name__ == '__main__':
     logger=logging.getLogger(__name__)
 
     main()
-
-    while True:          
-        time.sleep(900)
-        logger.info("Script is alive")
 
 
 
